@@ -1,0 +1,126 @@
+\documentclass[../main.tex]{subfile}
+
+\begin{document}
+
+\section{Classification} \label{sec:classification}
+
+    \subsection{Feature Extraction} \label{subsec:features-extraction}
+    There are several ways to represent an image and, for this work, the following ones were chosen: RGB image, grayscale image, and image representation through features.
+    
+    The first method to represent the images is in the form of an RGB image. It can be considered the default method since it does not require any additional computation after the pre-processing phase.
+    
+    The second one transforms an image into a grayscale image, as the colors may not only be irrelevant but also misleading, and the difference in lighting between a healthy and a rotten fruit peel may be enough to classify the fruits correctly.
+    
+    The third and last one represents an image through some textural properties from a Gray Level Co-occurrence Matrix (GLCM) \cite{IV-item1}.
+    A GLCM is a matrix defined over an image, and it represents the distribution of co-occurring gray values (intensity) at a given offset. In other words, it calculates the spatial distribution of intensity values in a neighborhood from a one-color channel image, like a grayscale image, which is why a GLCM is good to obtain textural information about an image.
+    
+    For an image $I$ of size $N \times N$, a co-occurrence matrix $M$ of order $N_{g} \times N_{g}$ can be defined as:
+    \begin{equation}
+        M(i,j) = \sum^{N}_{x=1}\sum^{N}_{y=1}
+        \begin{cases}
+            1 & \mbox{if } I(x,y) = i \mbox{ and } \\
+              &\quad I(x + \Delta_{x}, y + \Delta_{y}) = j, \\
+            0 & \mbox{otherwise},
+        \end{cases}
+    \end{equation}
+    In which $i$ and $j$ are the intensity values, $x$ and $y$ are the spatial coordinates. The offset ($\Delta_{x}, \Delta_{y}$) specifies the distance between the pixel-of-interest and its neighbors. This offset can also be parameterized in terms of a distance $d$ and an angle $\theta$. Note that when $d = 1$, it is called a normalized co-occurence matrix. Having that said, $m(i,j)$ will be referenced as the $(i,j)$-th entry in a normalized co-occurence matrix.
+    
+    In order to calculate the textural properties yet to be mentioned, the following equations will be needed:
+    \begin{align*}
+        m_{x}(i) = \sum^{N_{g}}_{j=1} m(i,j),&\quad 
+        m_{y}(j) = \sum^{N_{g}}_{i=1} m(i,j) \\
+        \mu_{x} = \sum^{N_{g}}_{i=1} i \cdot m_{x}(i),&\quad
+        \mu_{y} = \sum^{N_{g}}_{j=1} j \cdot m_{y}(j) \\
+        \sigma^{2}_{x} = \sum^{N_{g}}_{i=1} (1 - \mu_{x})^{2} \cdot m_{x}(i),&\quad
+        \sigma^{2}_{y} = \sum^{N_{g}}_{j=1} (1 - \mu_{y})^{2} \cdot m_{y}(j)
+    \end{align*}
+    
+    Concerning the GLCM method, to calculate the textural information necessary to classify the fruits, the following statistical descriptors will be used:
+    
+    \begin{description}
+        \item[Contrast] --- measures the intensity contrast between a pixel and its neighbours over the whole image:
+        \begin{equation}
+            Contrast = \sum^{N_{g}}_{i=1} \sum^{N_{g}}_{j=1} m(i,j) \cdot \lvert i - j \rvert^{2}
+            \label{eq:contrast}
+        \end{equation}
+        
+        \item[Dissimilarity] --- measures the distance between pairs of \mbox{pixels} in a region of interest:
+        \begin{equation}
+            Dissimilarity = \sum^{N_{g}}_{i=1} \sum^{N_{g}}_{j=1} m(i,j) \cdot \lvert i - j \rvert
+            \label{eq:dissimilarity}
+        \end{equation}
+        
+        \item[Homogeneity] --- measures the closeness of the distribution of elements in the GLCM to the GLCM diagonal:
+        \begin{equation}
+            Homogeneity = \sum^{N_{g}}_{i=1} \sum^{N_{g}}_{j=1} \frac{m(i,j)}{1 + \lvert i - j \rvert^{2}}
+            \label{eq:homogeneity}
+        \end{equation}
+        
+        \item[Angular Second Moment (ASM)] --- Provides the sum of the squared elements in the GLCM, it is used as a measure of orderliness:
+        \begin{equation}
+            ASM = \sum^{N_{g}}_{i=1} \sum^{N_{g}}_{j=1} m(i,j)^{2}
+            \label{eq:asm}
+        \end{equation}
+        
+        \item[Energy] --- Similar to the ASM, however it is considered a better texture measurement:
+        \begin{equation}
+            Energy = \sqrt{ASM}
+            \label{eq:energy}
+        \end{equation}
+        
+        \item[Correlation] --- measures how correlated a pixel  is to its neighbour over the over whole image:
+        \begin{equation}
+            Correlation = \sum^{N_{g}}_{i=1} \sum^{N_{g}}_{j=1} \frac{m(i,j) \left(1 - \mu_{x}\right) \left(1 - \mu_{y}\right)}{\sigma_{x} \cdot \sigma_{y}}
+            \label{eq:correlation}
+        \end{equation}
+    \end{description}
+    
+    Considering that a GLCM uses gray levels values or intensity values, an RGB image cannot be used as an input, neither a grayscale image, as it loses relevant information about each color channel. So far, 3 GLCMs are needed, one for each channel in the RGB color scheme. In addition, as mentioned above, the distance used is one pixel, moreover, four angles were used: $0^{\circ}$, $45^{\circ} (\frac{\pi}{4})$, $90^{\circ} (\frac{2\pi}{4})$, and $135^{\circ} (\frac{3\pi}{4})$. A combination between an angle and a distance makes an offset. Now, 4 GLCMs are needed for each color channel. Therefore, in total, 12 GLCMs need to be built. Then, as 6 textural descriptors are calculated from one GLCM \eqref{eq:contrast} to \eqref{eq:correlation}. To represent a single image, 72 textural descriptors are calculated.
+    
+    Moreover, for every method discussed above, a Gabor filter is applied. If it is a grayscale image, the Gabor filter is applied after the image is converted into grayscale. If a GLCM is used, the filter is applied to the image before the GLCM is calculated.
+
+    A Gabor filter can be defined as a sinusoidal signal of a particular frequency and orientation, modulated by a Gaussian wave. In other words, it allows certain frequencies and rejects others. When a Gabor Filter is applied to an image, it emphasizes the edges and points where texture changes accordingly to the filter pattern, i.e., its parameters. Therefore, these Gabor Filters are well suited for texture analysis. Mathematically, a Gabor Filter has a real and imaginary component representing orthogonal directions. For this work, only the real component was used.
+    
+    \subsection{Neural Network} \label{subsec:neural-network}
+    
+    There were 120 samples of each of the six fruits, i.e., 720 images in total, and all the fruit images were split equally into those three classes. In other words, 40 images for each class (A, B, or C). 80\% of fruit images were used to train the models and the remaining 20\% for the validation step. Since there were defined very distinct ways to represent the images, it demands different neural networks architectures to fit better the data fed into them.
+    
+    \subfile{../figures/cnn-diagram}
+    
+    The architecture seen in Figure \ref{fig:cnn} represents the structure of a Convolution Neural Network (CNN). A CNN is mainly composed of four different layers: Convolution, Pooling, Flattening, and Classification.
+    
+    Convolutional layers allow one to systematically create and apply a series of filters over an array input (e.g., an image). These filters act like feature detectors, and then the layer outputs a "feature map" that summarizes the features detected (e.g., lines and edges) by the filters. Although the Convolutional layers have their limitations, they are translation-invariant, because they are capable of detecting patterns locally rather than globally. It means that if a Convolution layer leaned a certain pattern, and if the same pattern occurs again, but in a different location, they would still be able to detect that same pattern.
+
+    A Pooling Layer is used to perform a downsample on feature maps, which reduces their dimensions, but they still carry the main elements. It works by aggregating a group of pixels and applying a pooling operation. The two most commons are Average Pooling, which calculates the average of each group, and Max Pooling, which calculates the maximum value in each group. The purpose of using a Pooling Layer is to decrease the computational power needed to process the data. And as a side-effect, it helps to extract dominant features, making the training process more efficient.
+
+    Before the Pooling layer, an activation function (e.g., ReLU (Rectified Linear Unit)) is used upon the features maps. This function usually breaks the linearity and adds complexity, much like it is done for a Dense Layer.
+    
+    The combination between a Convolutional Layer, a Pooling Layer, and an activation function makes a Convolution Group, seen in Figure \ref{fig:cnn}. When stacking these Convolutional Layers, instead of detecting simple features (e.g., lines and edges), deeper layers learn to detect more abstract features, like shapes or specific objects.
+    
+    After that, a Flattening Layer is used because the output of the combination of multiple Convolutional Groups is multi-dimensional, composed of several features maps. So, it needs to be flattened.
+    
+    Finally, the Classification part is composed of a sequence of Dense Groups. A Dense Group is made of Dense Layers, also known as Fully Connected Layers, followed by an activation function. Before the Output Layer, a Dropout Layer is used to help reducing overfitting while training (useful for a small dataset). It works by randomly deactivating a percentage of the neurons from the previous layer. Then for the Output Layer, which is also a Dense Layer, the activation function chosen is often different from the ones used in the hidden layers.
+    
+    \subfile{../figures/dnn-diagram}
+    
+    The other architecture, DNN, seen in Figure \ref{fig:dnn}, is a simple deep neural network composed of a Flattening Layer at the beginning, a sequence of Dense Groups, and a Dropout Layer right before the Output Layer. This architecture may look very similar to the one used in the Flattening and Classification part inside the CNN. However, in reality, a CNN uses a combination of a convolutional technique to extract useful information from images and passes it as input to a fully connected deep neural network.
+    
+    Data Augmentation technique was used at the beginning of the CNN seen in Figure \ref{fig:cnn}. Since there was a total of 120 images for each fruit, and each model was trained for only one type of fruit, meaning the models were on a small dataset. It helps reducing overfitting by generating new images from existing ones by doing simple modifications such as random horizontal and vertical flipping with a random rotation. For the same reason, a Spatial Dropout Layer was used right before the Flattening part. It works similarly to a regular Dropout Layer. However, it is applied to 2D feature maps instead of individual elements.
+    
+    Regarding the Flattening Layer in the CNN, a Global Average Filter was used. It uses an average pooling to reduce the size of feature maps, and then it flattens and passes it as input to the next part. This Global Average Filter is important because its input came from either RGB or Grayscale image methods. Thus, if it were simply flattened, there would be too much information for the dense neural network, i.e., the Classification part, to process and classify efficiently. That was unnecessary for the DNN since its input came from the GLCM textural properties, and it consisted of only 72 elements, the GLCM descriptors when flattened.
+    
+    Inside the Convolutional Groups, the activation functions used were the ReLU \eqref{eq:relu} or the swish \eqref{eq:swish} function, which behaves similarly to the ReLU. Concerning the Dense Groups, they use either the swish or the ELU (Exponential Linear Unit) \eqref{eq:elu} function, which is also similar to the ReLU.
+
+    The softmax \eqref{eq:softmax} function is used at the Output Layer because it converts its input into a probability distribution. Useful for classification tasks when there are more than two classes.
+    \begin{align}
+        ReLU(x) &= max(0, x) \label{eq:relu} \\
+        swish(x) &= \frac{x}{1 + \mathrm{e}^{-x}} \label{eq:swish} \\
+        ELU(x) &= 
+        \begin{cases}
+            x & \mbox{if } x > 0, \\
+            \mathrm{e}^{x} - 1 & \mbox{otherwise},
+        \end{cases} \label{eq:elu} \\
+        softmax(x_{i}) &= \frac{\mathrm{e}^{x_{i}}}{\sum^{K}_{j=1} \mathrm{e}^{x_{j}}} \label{eq:softmax}
+    \end{align}
+
+\end{document}

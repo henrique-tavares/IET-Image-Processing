@@ -1,0 +1,24 @@
+\documentclass[../main.tex]{subfile}
+
+\begin{document}
+\begin{table}[htb]
+\begin{minipage}{\linewidth}
+    \caption{Train and validation accuracy results for the models trained on abius images. The bold values show the best configuration for training and validation environments.}
+    \label{tab:abius}
+    
+    \centering
+    \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} c c c }
+        \toprule
+        \multirow{2}{*}{Mode} & \multicolumn{2}{c}{Accuracy}\\
+        \cmidrule{2-3}
+         & Train & Validation\\
+        \midrule
+        RGB & 86.74\% & 84.62\%\\
+        Grayscale & 71.79\% & 68.38\%\\
+        \textbf{GLCM} & \textbf{99.01\%} & \textbf{95.83}\%\\
+        \bottomrule
+    \end{tabular*}
+\end{minipage}
+\end{table}
+
+\end{document}

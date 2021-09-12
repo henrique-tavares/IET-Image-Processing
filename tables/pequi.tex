@@ -1,0 +1,24 @@
+\documentclass[../main.tex]{subfile}
+
+\begin{document}
+\begin{table}[htb]
+\begin{minipage}{\linewidth}
+    \caption{Train and validation accuracy results for the models trained on pequis images. The bold values show the best configuration for training and validation environments.}
+    \label{tab:pequis}
+    
+    \centering
+    \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} c c c }
+        \toprule
+        \multirow{2}{*}{Mode} & \multicolumn{2}{c}{Accuracy}\\
+        \cmidrule{2-3}
+         & Train & Validation\\
+        \midrule
+        RGB & 65.76\% & 46.51\%\\
+        Grayscale & 62.12\% & 61.78\%\\
+        \textbf{GLCM} & \textbf{97.04\%} & \textbf{94.77}\%\\
+        \bottomrule
+    \end{tabular*}
+\end{minipage}
+\end{table}
+
+\end{document}

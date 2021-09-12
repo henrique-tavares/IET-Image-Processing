@@ -1,0 +1,24 @@
+\documentclass[../main.tex]{subfile}
+
+\begin{document}
+\begin{table}[htb]
+\begin{minipage}{\linewidth}
+    \caption{Train and validation accuracy results for the models trained on gabirobas images. The bold values show the best configuration for training and validation environments.}
+    \label{tab:gabirobas}
+    
+    \centering
+    \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} c c c }
+        \toprule
+        \multirow{2}{*}{Mode} & \multicolumn{2}{c}{Accuracy}\\
+        \cmidrule{2-3}
+         & Train & Validation\\
+        \midrule
+        RGB & 80.70\% & 79.11\%\\
+        Grayscale & 79.09\% & 81.76\%\\
+        \textbf{GLCM} & \textbf{97.67\%} & \textbf{96.84}\%\\
+        \bottomrule
+    \end{tabular*}
+\end{minipage}
+\end{table}
+
+\end{document}

@@ -1,0 +1,87 @@
+\documentclass{cta-author}% where cta-author is the template name
+
+\newtheorem{theorem}{Theorem}{}
+\newtheorem{corollary}{Corollary}{}
+\newtheorem{remark}{Remark}{}
+
+%The authors can define any packages after the \documentclass{cta-author} command.
+
+\usepackage{amsmath} % for dealing with mathematics,
+%\usepackage{amsthm} for dealing with theorem environments,
+% \usepackage{cite} % for dealing with citations
+\usepackage{hyperref} % for linking the cross references
+\usepackage{graphics} % for dealing with figures.
+%\usepackage{algorithmic} for describing algorithms
+\usepackage{subfig} % for getting the subfigures e.g., "Figure 1a and 1b" etc.
+\usepackage{url} % It provides better support for handling and breaking URLs.
+
+\usepackage{booktabs}
+\usepackage{subfiles}
+\usepackage{dashrule}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{cleveref}
+% \usepackage{ragged2e}
+
+%The author can find the documentation of the above style file and any additional
+%supporting files if required from "http://www.ctan.org"
+
+% *** Do not adjust lengths that control margins, column widths, etc. ***
+
+\begin{document}
+
+\title{IET Image Processing}
+
+\author{\au{Henrique Tavares Aguiar$^1$}%%% First author
+    \au{Raimundo Claudio da Silva Vasconcelos$^1$}%%% Second author
+}
+
+\address{\add{1}{Faculty of Computer Science, Federal Institute of Brasília, Brasília, Brazil}%%% Author address here
+    %%% First group represent author affiliation number and second group represent name.
+    \email{henrique.aguiar@estudante.ifb.edu.br}}
+
+\begin{abstract} % Máximo de 200 palavras
+    The quality of fruit plays a fundamental role in their marketing and is mainly defined by its shape, color, and size. The classification process is traditionally done manually and takes time. The use of image processing techniques can help this task. Some methodologies for image classification are presented, using deep neural networks. A set of combinations between Convolution Neural Networks (CNN), deep neural networks (DNN) using Gabor filter, over RGB and grayscale images, extracting texture properties of a GLCM (Gray Level Co-occurrence Matrices) is used in this project. Background segmentation, contrast enhancement, and data augmentation are also used to improve generalization and minimize overfitting. Applying it to a set of tropical fruits resulted in an excellent set of results, above 95\% on average.
+\end{abstract}
+
+\maketitle
+
+% \subfile{figures/fruits/abiu}
+% \subfile{figures/fruits/caju-amarelo}
+% \subfile{figures/fruits/caju-vermelho}
+% \subfile{figures/fruits/gabiroba}
+% \subfile{figures/fruits/pequi}
+% \subfile{figures/fruits/siriguela}
+
+% \subfile{figures/classes}
+% \subfile{figures/diagram}
+% \subfile{figures/flowchart}
+% \subfile{figures/preprocessing}
+
+% \subfile{tables/abiu}
+% \subfile{tables/caju-amarelo}
+% \subfile{tables/caju-vermelho}
+% \subfile{tables/gabiroba}
+% \subfile{tables/pequi}
+% \subfile{tables/siriguela}
+% \subfile{tables/fruits-comparison}
+
+
+\subfile{sections/1-Introduction}
+\subfile{sections/2-Related-Work}
+% \subfile{sections/3-Problem-Definition}
+\subfile{sections/4-Fruits}
+\subfile{sections/5-Materials}
+\subfile{sections/6-Proposed-Methodology}
+\subfile{sections/7-Image-Acquisition}
+\subfile{sections/8-Segmentation-&-Preprocessing}
+\subfile{sections/9-Classification}
+\subfile{sections/10-Results-&-Discussion}
+\subfile{sections/11-Conclusions-&-Future-Scope}
+
+
+% \nocite{*}
+\bibliographystyle{iet}
+\bibliography{references}
+
+\end{document}

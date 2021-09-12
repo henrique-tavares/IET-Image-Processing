@@ -1,0 +1,26 @@
+\documentclass[../main.tex]{subfile}
+
+\begin{document}
+
+\begin{figure*}
+    \centering
+    \begin{minipage}{17.5cm}
+        \subfloat[RGB]{
+            \includegraphics[width=.33\textwidth]{images/graphs/caju-amarelo/gabor/rgb.eps}
+        }
+        \subfloat[Grayscale]{
+            \includegraphics[width=.33\textwidth]{images/graphs/caju-amarelo/gabor/grayscale.eps}
+        }
+        \subfloat[GLCM]{
+            \includegraphics[width=.33\textwidth]{images/graphs/caju-amarelo/gabor/glcm.eps}
+        }
+
+        \caption{Training curves for the models trained on \textit{cajus amarelos} images.}
+        \figfooter{a}{It was used RGB images.}
+        \figfooter{b}{It was used grayscale images.}
+        \figfooter{c}{It was used some texture properties from a GLCM.}
+        \label{fig:cajus-amarelos}
+    \end{minipage}
+\end{figure*}
+
+\end{document}

@@ -1,0 +1,77 @@
+\documentclass[../main.tex]{subfile}
+
+\begin{document}
+
+\begin{figure*}[htb]
+    \centering
+    \begin{minipage}{17.5cm}
+        \subfloat{
+            \;%
+            \rotatebox{90}{~~~~~\textbf{Plain Method}~~~~~}%
+            \;%
+            \quad
+        }
+        \subfloat{
+            \includegraphics[width=.145\textwidth]{images/preprocessing/plain/plain_step_0.eps}
+            \label{}
+        }
+        \subfloat{
+            \includegraphics[width=.145\textwidth]{images/preprocessing/plain/plain_step_1.eps}
+            \label{}
+        }
+        \subfloat{
+            \includegraphics[width=.145\textwidth]{images/preprocessing/plain/plain_step_2.eps}
+            \label{}
+        }
+        \subfloat{
+            \includegraphics[width=.145\textwidth]{images/preprocessing/plain/plain_step_3.eps}
+            \label{}
+        }
+        \subfloat{
+            \includegraphics[width=.145\textwidth]{images/preprocessing/plain/plain_step_4.eps}
+            \label{}
+        }
+        \subfloat{
+            \includegraphics[width=.145\textwidth]{images/preprocessing/plain/plain_step_5.eps}
+            \label{}
+        }
+        \\\hdashrule{\textwidth}{1pt}{3pt}
+        \subfloat{
+            \;%
+            \rotatebox{90}{~~\textbf{Erosion Method}~~}%
+            \;%
+            \quad
+        }
+        \setcounter{subfigure}{0}%
+        \subfloat[step 1]{
+            \includegraphics[width=.145\textwidth]{images/preprocessing/erosion/erosion_step_0.eps}
+            \label{subfig:fruits-step-1}
+        }
+        \subfloat[step 2]{
+            \includegraphics[width=.145\textwidth]{images/preprocessing/erosion/erosion_step_1.eps}
+            \label{subfig:fruits-step-2}
+        }
+        \subfloat[step 3]{
+            \includegraphics[width=.145\textwidth]{images/preprocessing/erosion/erosion_step_2.eps}
+            \label{subfig:fruits-step-3}
+        }
+        \subfloat[step 4]{
+            \includegraphics[width=.145\textwidth]{images/preprocessing/erosion/erosion_step_3.eps}
+            \label{subfig:fruits-step-4}
+        }
+        \subfloat[step 5]{
+            \includegraphics[width=.145\textwidth]{images/preprocessing/erosion/erosion_step_4.eps}
+            \label{subfig:fruits-step-5}
+        }
+        \subfloat[step 6]{
+            \includegraphics[width=.145\textwidth]{images/preprocessing/erosion/erosion_step_5.eps}
+            \label{subfig:fruits-step-6}
+        }
+
+        \caption{Fruit images pre-processing, which includes contrast enhancement and background removal.}
+        \figfooter{c}{Both lines were drawn on the image from the first step only for visualization purposes.}
+        \label{fig:fruits-pre-processing}
+    \end{minipage}
+\end{figure*}
+
+\end{document}

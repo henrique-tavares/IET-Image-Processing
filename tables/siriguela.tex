@@ -1,0 +1,24 @@
+\documentclass[../main.tex]{subfile}
+
+\begin{document}
+\begin{table}[htb]
+\begin{minipage}{\linewidth}
+    \caption{Train and validation accuracy results for the models trained on siriguelas images. The bold values show the best configuration for training and validation environments.}
+    \label{tab:siriguelas}
+    
+    \centering
+    \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} c c c }
+        \toprule
+        \multirow{2}{*}{Mode} & \multicolumn{2}{c}{Accuracy}\\
+        \cmidrule{2-3}
+         & Train & Validation\\
+        \midrule
+        RGB & 79.36\% & 84.94\%\\
+        Grayscale & 59.13\% & 57.50\%\\
+        \textbf{GLCM} & \textbf{99.42\%} & \textbf{98.10}\%\\
+        \bottomrule
+    \end{tabular*}
+\end{minipage}
+\end{table}
+
+\end{document}

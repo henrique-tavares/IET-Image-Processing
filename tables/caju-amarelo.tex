@@ -1,0 +1,24 @@
+\documentclass[../main.tex]{subfile}
+
+\begin{document}
+\begin{table}[htb]
+\begin{minipage}{\linewidth}
+    \caption{Train and validation accuracy results for the models trained on cajus amarelos images. The bold values show the best configuration for training and validation environments.}
+    \label{tab:cajus-amarelos}
+    
+    \centering
+    \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} c c c }
+        \toprule
+        \multirow{2}{*}{Mode} & \multicolumn{2}{c}{Accuracy}\\
+        \cmidrule{2-3}
+         & Train & Validation\\
+        \midrule
+        RGB & 69.93\% & 68.35\%\\
+        Grayscale & 72.30\% & 71.14\%\\
+        \textbf{GLCM} & \textbf{97.40\%} & \textbf{95.83}\%\\
+        \bottomrule
+    \end{tabular*}
+\end{minipage}
+\end{table}
+
+\end{document}
