@@ -3,22 +3,22 @@
 \begin{document}
 
 \section{Segmentation \& Pre-processing} \label{sec:segmentation-&-preprocesing}
-    \subfile{../figures/preprocessing}
+\subfile{../figures/preprocessing}
 
-    Figure \ref{fig:fruits-pre-processing} presents the first process, background segmentation. We chose this approach because the background contains irrelevant information regarding the fruit. Thus removing it will lead to better results.
-    
-    Figure \ref{subfig:fruits-step-1} shows images resized to 512x512 pixels. Figure \ref{subfig:fruits-step-2} shows the phase which  images are being prepared for a contour detection algorithm.
-    This phase was divided into two separate ways, the first one called plain method'' smooths the image using a median filter, the other one called ``erosion method'' is more complex.
-    It performs a morphological reconstruction by erosion on the image, in other words, low-intensity values replace high-intensity values and are limited to a minimum value. Alternatively, this recontruction can be seen as a way to isolate connected regions of an image, in this case, the fruit and the background. Also, a median filter is applied.
-    
-    In general, the erosion method is a faster but slightly less accurate method when compared to the plain method. When the background is too noisy, the erosion method most of the time is unable to correctly find the contours. However, when the shape of a fruit is too irregular, the contour found by using the plain method may not exactly fit the actual shape of that fruit. The erosion method is preferred over the plain method due to its time and computational efficiency.
-    
-    The Active Contour Model \cite{III-item1} is used as shown in Figure \ref{subfig:fruits-step-3} to find the contours of the fruits. It is applied to the image obtained from the previous step. It works by minimizing the energy of an initial spline, seen as the red dotted line in Figure \ref{subfig:fruits-step-3}, guided by both the image and shape of the spline, fitting onto nearby lines and edges. The result can be seen as the blue line in Figure \ref{subfig:fruits-step-3}.
-    
-    The image in Figure \ref{subfig:fruits-step-4} is simply a mask image built from the contour calculated previously, filling its area. Alternatively, it is the shape of the fruit.
-    
-    After that, in Figure \ref{subfig:fruits-step-5}, a basic morphological erosion is applied on the mask image to reduce the the shape's area, aiming to discard possible shadows and a portion of its area on the edges that may be misleading due to illumination differences.
-    
-    Finally, in Figure \ref{subfig:fruits-step-6}, the mask image is applied to the image from the first step. Also a few improvements are made to the image: gamma adjustment, intensity rescaling and contrast enhancement.
+Figure \ref{fig:fruits-pre-processing} presents the first process, background segmentation. We chose this approach because the background contains irrelevant information regarding the fruit. Thus removing it will lead to better results.
+
+Figure \ref{subfig:fruits-step-1} shows images resized to 512x512 pixels. Figure \ref{subfig:fruits-step-2} shows the phase which  images are being prepared for a contour detection algorithm.
+This phase was divided into two separate ways, the first one called plain method'' smooths the image using a median filter, the other one called ``erosion method'' is more complex.
+It performs a morphological reconstruction by erosion on the image, in other words, low-intensity values replace high-intensity values and are limited to a minimum value. Alternatively, this recontruction can be seen as a way to isolate connected regions of an image, in this case, the fruit and the background. Also, a median filter is applied.
+
+In general, the erosion method is a faster but slightly less accurate method when compared to the plain method. When the background is too noisy, the erosion method most of the time is unable to correctly find the contours. However, when the shape of a fruit is too irregular, the contour found by using the plain method may not exactly fit the actual shape of that fruit. The erosion method is preferred over the plain method due to its time and computational efficiency.
+
+The Active Contour Model \cite{III-item1} is used as shown in Figure \ref{subfig:fruits-step-3} to find the contours of a fruit in an image. It is applied to the image obtained from the previous step. It works by minimizing the energy of an initial spline, seen as the red dotted line in Figure \ref{subfig:fruits-step-3}, guided by both the image and shape of the spline, fitting onto nearby lines and edges. The result can be seen as the blue line in Figure \ref{subfig:fruits-step-3}.
+
+The image in Figure \ref{subfig:fruits-step-4} is simply a mask image built from the contour calculated previously, filling its area. Alternatively, it is the shape of the fruit.
+
+After that, in Figure \ref{subfig:fruits-step-5}, a basic morphological erosion is applied on the mask image to reduce the the shape's area, aiming to discard possible shadows and a portion of its area on the edges that may be misleading due to illumination differences.
+
+Finally, in Figure \ref{subfig:fruits-step-6}, the mask image is applied to the image from the first step. Also a few improvements are made to the image: gamma adjustment, intensity rescaling and contrast enhancement.
 
 \end{document}

@@ -1,0 +1,71 @@
+\documentclass[../main.tex]{subfile}
+
+\begin{document}
+
+\begin{table*}[t]
+    \caption{GLCM properties with DNN}
+    \label{tab:glcm-details}
+
+    \centering
+    \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} c c c c c c }
+        \toprule
+        \textit{Abiu} & Yellow-skinned \textit{Caju}  & Red-skinned \textit{Caju} & \textit{Gabiroba} & \textit{Pequi} & \textit{Siriguela} \\
+        \midrule
+        Dense, 128, swish & Dense, 128, elu & Dense, 128, elu & Dense, 128, swish & Dense, 64, elu & Dense, 128, swish \\
+        Dense, 64, swish & Dense, 64, elu & Dense, 64, elu & Dense, 64, swish & Dense, 128, swish & Dense, 64, swish \\
+        Dense, 32, swish & Dense, 32, elu & Dense, 32, elu & Dense, 32, swish & Dense, 128, swish & Dense, 32, swish \\
+        Droput, 15\% & Droput, 15\% & Dense, 16, elu & Dropout, 15\% & Dropout, 20\% & Dense, 3, softmax \\
+        Dense, 3, softmax & Dense, 3, softmax & Droput, 10\% & Dense, 3, softmax & Dense, 3, softmax &  \\
+        &  & Dense, 3, softmax &  & & \\
+        \bottomrule
+    \end{tabular*}
+\end{table*}
+
+\begin{table*}[t]
+    \caption{RGB images with CNN}
+    \label{tab:rgb-details}
+
+    \centering
+    \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} c c c c c c c c c c c c }
+        \toprule
+        \textit{Abiu} & Yellow-skinned \textit{Caju}  & Red-skinned \textit{Caju} & \textit{Gabiroba} & \textit{Pequi} & \textit{Siriguela} \\
+        \midrule
+        Conv2D, 32 - (3,3), swish & Conv2D, 16 - (3,3), swish & Conv2D, 32 - (3,3), swish & Conv2D, 32 - (3,3), swish & Conv2D, 32 - (3,3), swish & Conv2D, 32 - (3,3), swish \\
+        MaxPooling2D, (2,2) & MaxPooling2D, (2,2) & MaxPooling2D, (2,2) & MaxPooling2D, (2,2) & MaxPooling2D, (2,2) & \\
+        Conv2D, 32 - (3,3), swish & Conv2D, 32 - (3,3), swish & Conv2D, 32 - (3,3), swish & Conv2D, 32 - (3,3), swish & Conv2D, 32 - (3,3), swish & \\
+        MaxPooling2D, (2,2) & MaxPooling2D, (2,2) & MaxPooling2D, (2,2) & MaxPooling2D, (2,2) & MaxPooling2D, (2,2) & \\
+        Conv2D, 64 - (3,3), swish & Conv2D, 64 - (3,3), swish & Conv2D, 64 - (3,3), swish & Conv2D, 64 - (3,3), swish & Conv2D, 64 - (3,3), swish & \\
+        MaxPooling2D, (2,2) & MaxPooling2D, (2,2) & MaxPooling2D, (2,2) & MaxPooling2D, (2,2) & MaxPooling2D, (2,2) & \\
+        Conv2D, 64 - (3,3), swish & SpatialDropout2D, 50\% & Conv2D, 64 - (3,3), swish & Conv2D, 64 - (3,3), swish & Conv2D, 64 - (3,3), swish & \\
+        MaxPooling2D, (2,2) & GlobalAveragePooling2D & MaxPooling2D, (2,2) & MaxPooling2D, (2,2) & MaxPooling2D, (2,2) & \\
+        SpatialDropout2D, 50\% & Dense, 128, elu & SpatialDropout2D, 50\% & SpatialDropout2D, 50\% & SpatialDropout2D, 50\% & \\
+        GlobalAveragePooling2D & Dense, 64, elu & GlobalAveragePooling2D & GlobalAveragePooling2D & GlobalAveragePooling2D & \\
+        Dense, 128, swish & Dense, 32, elu & Dense, 128, swish & Dense, 128, swish & Dense, 128, swish & \\
+        Dense, 64, swish & Dropout, 15\% & Dense, 64, swish & Dense, 64, swish & Dense, 64, swish & \\
+        Dense, 32, swish & Dense, 3, softmax & Dense, 32, swish & Dense, 32, swish & Dense, 32, swish & \\
+        Dropout, 10\% & & Dropout, 15\% & Dropout, 15\% & Dropout, 50\% & \\
+        Dense, 3, softmax & & Dense, 3, softmax & Dense, 3, softmax & Dense, 3, softmax & \\
+
+        \bottomrule
+    \end{tabular*}
+\end{table*}
+
+% \begin{table*}[t]
+%     \caption{Grayscale images with DNN}
+%     \label{tab:grayscale-details}
+
+%     \centering
+%     \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} c c c c c c c c c c c c }
+%         \toprule
+%         \textit{Abiu} & Yellow-skinned \textit{Caju}  & Red-skinned \textit{Caju} & \textit{Gabiroba} & \textit{Pequi} & \textit{Siriguela} \\
+%         \midrule
+%         neurons & activation & neurons & activation & neurons & activation & neurons & activation & neurons & activation & neurons & activation \\
+%         \midrule
+%         a & a & a & a & a & a & a & a & a & a & a & a \\
+%         a & a & a & a & a & a & a & a & a & a & a & a \\
+%         a & a & a & a & a & a & a & a & a & a & a & a \\
+%         \bottomrule
+%     \end{tabular*}
+% \end{table*}
+
+\end{document}
