@@ -1,0 +1,23 @@
+\documentclass[../main.tex]{subfile}
+
+\begin{document}
+
+\begin{table}[htb]
+    \begin{minipage}{\linewidth}
+        \caption{Train and validation accuracy results for all the fruits presented so far, restrited to only GLCM results. The bold values show which fruit obtained the best results.}
+        \label{tab:related-work}
+
+        \centering
+        \begin{tabularx}{.9\linewidth}{ c >{\centering\arraybackslash}X c }
+            \toprule
+            \textbf{Paper}  & \textbf{Classification method}                           & \textbf{Accuracy} \\
+            \midrule
+            \cite{II-item1} & Counting of blobs found with a multiple threshold method & 89\%              \\
+            \cite{II-item7} & Multi-class SVM                                          & 93\%              \\
+            \cite{II-item8} & RBPNN                                                    & 88\%              \\
+            \bottomrule
+        \end{tabularx}
+    \end{minipage}
+\end{table}
+
+\end{document}

@@ -3,22 +3,28 @@
 \begin{document}
 
 \section{Results \& Discussion} \label{sec:results-&-discussion}
-    
-    In this section, we will present the results of the combination between the various imaging representation methods, their appropriate neural network architectures, and a Gabor Filter. Experiments were made using all of the six fruits separately, they can be seen in \Cref{fig:abius,fig:cajus-amarelos,fig:cajus-vermelhos,fig:gabirobas,fig:pequis,fig:siriguelas}.
-    
-    \subfile{../figures/fruits/abiu}
-    \subfile{../figures/fruits/caju-amarelo}
-    \subfile{../figures/fruits/caju-vermelho}
-    \subfile{../figures/fruits/gabiroba}
-    \subfile{../figures/fruits/pequi}
-    \subfile{../figures/fruits/siriguela}
-    
-    Across all the graphs, the y-axis represents the accuracies (training and validation) achieved by the model, while the x-axis represents the epochs from when the models were being trained. Those models were trained for different epochs, due to a technique called Early Stopping, which stops the training when there is no improvement in loss, which is a measure of how wrong a model is, for a number of consecutive epochs.
-    
-    Analyzing the graphs, it is clear that the GLCM textural properties-based models outran the image-based ones. Between the image-based models, the ones that used RGB images managed to be slightly better in general. It is also visible a strange behavior on various graphs. It tends to occur more often in the GLCM based models. And this strange behavior is when a model achieved better results on the validation set. A possible explanation is when the validation set is too easy, which is completely plausible due to the small datasets used.
-    
-    \subfile{../tables/fruits-comparison}
-    
-    A closer look at the best results across all the fruits, i.e., GLCM textural properties with a DNN, can be seen in Table \ref{tab:fruits-comparison}. First of all, it is safe to assume the results were overall great, since every result is above 95\%, except for the \textit{pequi} fruit. And the \textit{siriguela} fruit was the one that achieved the best accuracies on both training and validation environments. Aside from that, between all the graphs, the graphs drawn from \textit{siriguelas} have more consistent and smoother lines.
+
+In this section, we will present the results of the combination between the various imaging representation methods, their appropriate neural network architectures, and a Gabor Filter. Experiments were made using all of the six fruits separately, they can be seen in \Cref{fig:abius,fig:cajus-amarelos,fig:cajus-vermelhos,fig:gabirobas,fig:pequis,fig:siriguelas}.
+
+\subfile{../figures/fruits/abiu}
+\subfile{../figures/fruits/caju-amarelo}
+\subfile{../figures/fruits/caju-vermelho}
+\subfile{../figures/fruits/gabiroba}
+\subfile{../figures/fruits/pequi}
+\subfile{../figures/fruits/siriguela}
+
+Across all the graphs, the y-axis represents the accuracies (training and validation) achieved by the model, while the x-axis represents the epochs from when the models were being trained. Those models were trained for different epochs, due to a technique called Early Stopping, which stops the training when there is no improvement in loss, which is a measure of how wrong a model is, for a number of consecutive epochs.
+
+Analyzing the graphs, it is clear that the GLCM textural properties-based models outran the image-based ones. Between the image-based models, the ones that used RGB images managed to be slightly better in general. It is also visible a strange behavior on various graphs. It tends to occur more often in the GLCM based models. And this strange behavior is when a model achieved better results on the validation set. A possible explanation is when the validation set is too easy, which is completely plausible due to the small datasets used.
+
+\subfile{../tables/fruits-comparison}
+
+A closer look at the best results across all the fruits, i.e., GLCM textural properties with a DNN, can be seen in Table \ref{tab:fruits-comparison}. First of all, it is safe to assume the results were overall great, since every result is above 95\%, except for the \textit{pequi} fruit. And the \textit{siriguela} fruit was the one that achieved the best accuracies on both training and validation environments.
+
+\subfile{../tables/fruits-comparison-loss}
+
+Now, analyzing this other measurement called loss in Table \ref{tab:fruits-comparison-loss}, which is basically a measurement of how wrong a model is. The \textit{siriguela} once again achieved the best results with the lowest loss values in both train and validation environments. But the loss values for the other fruits are not bad, since they are somewhat proportional to the accuracies values, and the validation losses are close to the train losses. Which are good indicators that the models have not over-fitted, that is, memorized the training set.
+
+Aside from that, between all the graphs, the graphs drawn from \textit{siriguelas} have more consistent and smoother lines.
 
 \end{document}

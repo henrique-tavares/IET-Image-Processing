@@ -1,0 +1,27 @@
+\documentclass[../main.tex]{subfile}
+
+\begin{document}
+\begin{table}[htb]
+    \begin{minipage}{\linewidth}
+        \caption{Train and validation loss results for all the fruits presented so far, restrited to only GLCM results. The bold values show which fruit obtained the best results.}
+        \label{tab:fruits-comparison-loss}
+
+        \centering
+        \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} c c c }
+            \toprule
+            \multirow{2}{*}{Fruit} & \multicolumn{2}{c}{GLCM - Loss}\\
+            \cmidrule{2-3}
+            & Train & Validation\\
+            \midrule
+            Abiu & 0.0534 & 0.1151\\
+            Yellow-skinned Caju & 0.0955 & 0.1617\\
+            Red-skinned Caju & 0.0734 & 0.0785\\
+            Gabiroba & 0.0650 & 0.0929\\
+            Pequi & 0.0779 & 0.0995\\
+            \textbf{Siriguela} & \textbf{0.0281} & \textbf{0.0418}\\
+            \bottomrule
+        \end{tabular*}
+    \end{minipage}
+\end{table}
+
+\end{document}
